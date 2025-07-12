@@ -40,10 +40,10 @@ function MessageCard({ message, onMessageDelete }: MessageCardProps) {
         const deleteMessage = await axios.delete<ApiResponse>(`/api/elete-message/${message._id}`)
 
         toast({
-            title: response.data.message
+            title: deleteMessage.data.message
         })
 
-        onMessageDelete(message._id)
+        onMessageDelete(String(message._id))
     }
     return (
         <Card>
