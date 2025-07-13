@@ -5,35 +5,35 @@ import UserModel from "@/model/User.model";
 import { User } from "next-auth";
 import mongoose from "mongoose";
 
-
 export async function GET(request: Request) {
     await dbConnect()
 
     // get currently logged in user
     const session = await getServerSession(authOptions)
     console.log('Session: ', session)
-    const user: User = session?.user as User
-
     if (!session || !session.user) {
-        return Response.json(
-            {
+        return new Response(
+            JSON.stringify({
                 success: false,
                 message: "User is not authenticated"
-            },
+            }),
             {
-                status: 401
+                status: 401,
+                headers: { "Content-Type": "application/json" }
             }
         )
     }
 
+    const user: User = session.user as User
     const userId = new mongoose.Types.ObjectId(user._id);
 
-    // aggregation pipelines to get all messages
+    console.log('User ID:', userId)
 
+    // aggregation pipelines to get all messages
     try {
-        const user = await UserModel.aggregate([
+        const userMessages = await UserModel.aggregate([
             {
-                $match: { id: userId }
+                $match: { _id: userId }
             },
             {
                 $unwind: "$messages"
@@ -49,40 +49,42 @@ export async function GET(request: Request) {
             }
         ])
 
-        if (!user || user.length === 0) {
-            return Response.json(
-                {
+        if (!userMessages || userMessages.length === 0) {
+            return new Response(
+                JSON.stringify({
                     success: false,
-                    message: "User not found, hence no messages.",
-                    user
-                },
+                    message: "User has no messages.",
+                    user: userMessages
+                }),
                 {
-                    status: 404
+                    status: 404,
+                    headers: { "Content-Type": "application/json" }
                 }
             )
         }
 
-        return Response.json(
-            {
+        return new Response(
+            JSON.stringify({
                 success: true,
-                message: user[0].messages,
-            },
+                message: userMessages[0].messages,
+            }),
             {
-                status: 200
+                status: 200,
+                headers: { "Content-Type": "application/json" }
             }
         )
     } catch (error) {
         console.log("Failed to get messages: ", error)
 
-        return Response.json(
-            {
+        return new Response(
+            JSON.stringify({
                 success: false,
                 message: "Failed to get messages"
-            },
+            }),
             {
-                status: 500
+                status: 500,
+                headers: { "Content-Type": "application/json" }
             }
         )
     }
-
 }
