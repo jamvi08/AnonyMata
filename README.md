@@ -13,21 +13,21 @@ To message me, click [Here](https://anonymata.vercel.app/u/Aman_Vishwakarma)
 
 ## **How to run in local system?**
 
-+Fork the repo and copy the repo url.
-+In terminal, run *git clone <repo link>*.
-+Rest github configuration is on you.
-+Now to run it, use command 
++ Fork the repo and copy the repo url.
++ In terminal, run *git clone <repo link>*.
++ Rest github configuration is on you.
++ Now to run it, use command 
     * *npm install*
     * *npm run dev*
-+To setup .env, take the help of **.env.sample**.
++ To setup .env, take the help of **.env.sample**.
 
 ## **How to use?**
 
-+Signup , verify your account and then sign in. You will get a dashboard.
-+On the dashboard you will get a url, copy it.
-+Share the url with anyone from whom you want to get message.
-+The person can open the link and message whatever they want.
-+All the messages sent to you will be visible on your dashboard.
++ Signup , verify your account and then sign in. You will get a dashboard.
++ On the dashboard you will get a url, copy it.
++ Share the url with anyone from whom you want to get message.
++ The person can open the link and message whatever they want.
++ All the messages sent to you will be visible on your dashboard.
 
 ## **Special Thanks**
 This project has been completed with the help of [@HiteshChoudhary](https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbmdLWkhiY2FhZmpiVkdIeUpoT1gydTV2TUFOUXxBQ3Jtc0tta1ljSVpyMVQ5ZXBZTFZfRnZkR0J3MG5BcENidHNFQTg4NVNVTTJLYS0wWjZsVnhEWloyZFdYNDFUQUlGdXRFbFhFbGFQbVBVSWNFQTdqNjdDSDNibFdhNGpRMkZaYVVUY3hRM1JJLVdqXzUweTlpUQ&q=https%3A%2F%2Fgithub.com%2Fhiteshchoudhary&v=g1iqZpXklnY).
