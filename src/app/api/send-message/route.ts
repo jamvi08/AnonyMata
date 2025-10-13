@@ -7,8 +7,16 @@ export async function POST(request: Request) {
 
     const { username, content } = await request.json()
 
+    if (!username || typeof username !== "string") {
+        return Response.json({ success: false, message: "Invalid or missing username" }, { status: 400 })
+    }
+
+    if (!content || typeof content !== "string" || !content.trim()) {
+        return Response.json({ success: false, message: "Invalid or empty message content" }, { status: 400 })
+    }
+
     try {
-        const user = await UserModel.findOneAndUpdate({ username })
+        const user = await UserModel.findOne({ username })
 
         if (!user) {
             return Response.json(
