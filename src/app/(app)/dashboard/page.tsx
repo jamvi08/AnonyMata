@@ -127,37 +127,37 @@ function Dashboard() {
 
 
   return (
-    <div className="my-8 mx-4 md:mx-8 lg:mx-auto p-6 bg-white rounded w-full max-w-6xl">
-      <h1 className="text-4xl font-bold mb-4">User Dashboard</h1>
+    <div className="my-8 mx-4 md:mx-8 lg:mx-auto p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg w-full max-w-6xl text-slate-800 dark:text-slate-100 transition-colors shadow-sm">
+      <h1 className="text-4xl font-bold mb-4 text-slate-900 dark:text-white">User Dashboard</h1>
 
       <div className="mb-4">
-        <h2 className="text-lg font-semibold mb-2">Copy Your Unique Link</h2>
+        <h2 className="text-lg font-semibold mb-2 text-slate-800 dark:text-slate-200">Copy Your Unique Link</h2>
         <div className="flex items-center">
           <input
             type="text"
             value={profileUrl}
             disabled
-            className="input input-bordered w-full p-2 mr-2"
+            className="input input-bordered w-full p-2 mr-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 font-mono text-sm rounded-md"
           />
-          <Button onClick={copyToClipboard}>Copy</Button>
+          <Button onClick={copyToClipboard} className="bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-200">Copy</Button>
         </div>
       </div>
 
-      <div className="mb-4">
+      <div className="mb-4 flex items-center">
         <Switch
           {...register('acceptMessages')}
           checked={acceptMessages}
           onCheckedChange={handleSwitchChange}
           disabled={isSwitchLoading}
         />
-        <span className="ml-2">
+        <span className="ml-2 text-slate-800 dark:text-slate-200 text-sm font-medium">
           Accept Messages: {acceptMessages ? 'On' : 'Off'}
         </span>
       </div>
-      <Separator />
+      <Separator className="border-slate-200 dark:border-slate-800" />
 
       <Button
-        className="mt-4"
+        className="mt-4 border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800"
         variant="outline"
         onClick={(e) => {
           e.preventDefault();
@@ -165,9 +165,9 @@ function Dashboard() {
         }}
       >
         {isLoading ? (
-          <Loader2 className="h-4 w-4 animate-spin" />
+          <Loader2 className="h-4 w-4 animate-spin text-slate-800 dark:text-slate-200" />
         ) : (
-          <RefreshCcw className="h-4 w-4" />
+          <RefreshCcw className="h-4 w-4 text-slate-800 dark:text-slate-200" />
         )}
       </Button>
       <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -180,7 +180,7 @@ function Dashboard() {
             />
           ))
         ) : (
-          <p>No messages to display.</p>
+          <p className="text-slate-500 dark:text-slate-400">No messages to display.</p>
         )}
       </div>
     </div>

@@ -51,36 +51,38 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
   };
 
   return (
-    <Card className="card-bordered">
+    <Card className="card-bordered bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-100 transition-colors shadow-sm">
       <CardHeader>
-        <div className="flex justify-between items-center">
-          <CardTitle>{message.content}</CardTitle>
+        <div className="flex justify-between items-start gap-4">
+          <CardTitle className="text-base font-semibold text-slate-900 dark:text-white break-words flex-1 leading-relaxed">
+            {message.content}
+          </CardTitle>
           <AlertDialog>
             <AlertDialogTrigger asChild>
-              <Button variant='destructive'>
-                <X className="w-5 h-5" />
+              <Button variant='destructive' size='icon' className="h-8 w-8 p-0 flex items-center justify-center flex-shrink-0">
+                <X className="w-4 h-4" />
               </Button>
             </AlertDialogTrigger>
-            <AlertDialogContent>
+            <AlertDialogContent className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-100">
               <AlertDialogHeader>
-                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                <AlertDialogDescription>
+                <AlertDialogTitle className="text-slate-900 dark:text-white">Are you absolutely sure?</AlertDialogTitle>
+                <AlertDialogDescription className="text-slate-500 dark:text-slate-400">
                   This action cannot be undone. This will permanently delete
                   this message.
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
-                <AlertDialogCancel>
+                <AlertDialogCancel className="border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300">
                   Cancel
                 </AlertDialogCancel>
-                <AlertDialogAction onClick={handleDeleteConfirm}>
+                <AlertDialogAction onClick={handleDeleteConfirm} className="bg-red-650 hover:bg-red-700 text-white">
                   Continue
                 </AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
           </AlertDialog>
         </div>
-        <div className="text-sm">
+        <div className="text-xs text-slate-400 dark:text-slate-500 mt-2">
           {dayjs(message.createdAt).format('MMM D, YYYY h:mm A')}
         </div>
       </CardHeader>
